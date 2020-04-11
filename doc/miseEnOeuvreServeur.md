@@ -43,7 +43,7 @@ dans ce projet nous employons la stratégie d'une **Single table strategie** pou
 ![xxxxxxxxxxxx](images/server/strategie_single_table.jpg)
 
 
-Dans les associations bidirectionnelles , de préférenc il faut  mettre "@JsonIgnore" aux getter renvoyant un type **Collection<Object>** pour eviter la recursivité lors d'appelle de methode http (get, ...)
+Dans les associations bidirectionnelles , de préférenc il faut  mettre "@JsonIgnore" aux getter renvoyant un type **Collection Object** pour eviter la recursivité lors d'appelle de methode http (get, ...)
 ![xxxxxxxxxxxx](images/server/AjoutClientRestErrorRecursif.jpg)
 
 
@@ -1420,6 +1420,8 @@ public class ApplicationSoapClientJava {
 ````
 
 ## RMI server
+
+![ server rmi](images/server/RmiService.jpg)
 
 ici on va utiliser spring pour pouvoir exporter un service RMI.
 
