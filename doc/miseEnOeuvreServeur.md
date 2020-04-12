@@ -755,8 +755,8 @@ public interface IOperationRepository extends JpaRepository<Operation, Long> {
 
 
 
-### RestController
-![Rest service](images/server/RestService.jpg)
+### Spring RestController
+![Rest service](images/server/RestServiceSpringRestcontroller.jpg)
 
 RestController **ClientRestService**  
 ```java
@@ -1668,10 +1668,108 @@ public class ServiceRmiClientConfig {
 
 ## Jesey restFul
 
-Dans l'immédiat ne fonctionne pas.  
+![xxxxxxxxxxxx](images/server/RestServiceJersey.jpg)
 
+
+Dans l'immédiat ne fonctionne pas avec les autres service SAOP. commmenter **@bean** dans cette classe de configuration pour que les autres service fonctionne
+
+
+
+
+Classe de configration spring avec Jersey
+```java
+package com.gestioncomptes.techn;
+
+import javax.ws.rs.ApplicationPath;
+
+import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+import com.gestioncomptes.service.restfuljaxrs.ClientRestServiceJaxRs;
+
+@Configuration
+
+//@ApplicationPath("/jaxs")
+public class JerseyConfig {
+
+	// @Bean Commenter pour désactiver jersey
+	public ResourceConfig getJersey() {
+		ResourceConfig resourceConfig = new ResourceConfig();
+
+		resourceConfig.register(ClientRestServiceJaxRs.class);
+
+		return resourceConfig;
+	}
+}
+```
+
+```java
+package com.gestioncomptes.service.restfuljaxrs;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.gestioncomptes.entities.Client;
+import com.gestioncomptes.metier.IClientMetier;
+
+@Component
+// annotation JAX-RS
+@Path("/")
+public class ClientRestServiceJaxRs {
+
+	@Autowired
+	private IClientMetier clientmetier;
+	private final static Log LOG = LogFactory.getLog(ClientRestServiceJaxRs.class);
+
+	@GET
+	@Consumes("application/json")
+	@Produces("application/json")
+	@Path("/healthcheck")
+	public String doesItWorks() {
+		LOG.debug("It works");
+
+		return "It works!";
+	}
+
+	@POST
+	@Path("/clients")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Client saveClient(Client client) {
+		return clientmetier.saveClient(client);
+	}
+
+	@GET
+	@Path("/clients")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Client> listclients() {
+		return clientmetier.listclients();
+	}
+
+}
+```
 
 ## Spring Data Rest
+
+Le principe consiste à exposer des urls directement depuis l'interface **jpaRepository**.  Il y a des limitations car il n'expose que de simple service. Si l'on veut plus complexe il faut l'associé avec spring restcontroller.
+![xxxxxxxxxxxx](images/server/springDataRest1.jpg)
 
 ```xml
 		<dependency>
@@ -1680,8 +1778,33 @@ Dans l'immédiat ne fonctionne pas.
 		</dependency>
 ```
 
+il faut ajouter l'annotation **@RepositoryRestResource** à l'interface qui herite de l'interface **@JpaRepository** de spring.
 
+Toutes les urls de base des entités sont disponible. On peut voir créer pour répondre à un besoin particulier qui n'existe pas dans les urls de base. 
+Voir la methode **findByNomClientContains**. Attention de bien respecté la syntaxe et les majuscule. findBy**N**omClientContains. on peut aussi introduire le HQL pour des requetes encore plus complexe. 
 
+```java
+package com.gestioncomptes.dao;
+
+import java.awt.print.Pageable;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
+
+import com.gestioncomptes.entities.Client;
+
+@RepositoryRestResource
+public interface IClientRepository extends JpaRepository<Client, Long> {
+
+	@RestResource(path="/contient")
+	public List<Client> findByNomClientContains(@Param("motcle") String motCle ) ; 
+}
+
+```
 ![xxxxxxxxxxxx](images/server/springDataRest.jpg)
 
 ![xxxxxxxxxxxx](images/server/SpringDataRestService.jpg)
@@ -1709,7 +1832,8 @@ Distingué les url **@Restcontrols** spring avec les url de **spring data rest**
  ![xxxxxxxxxxxx](images/server/springDataRestChangerContextPath.jpg)                                                                                             
 
 
-##JMS avec ActiveMQ
+## JMS avec ActiveMQ
+![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
 message asynchrone
 
