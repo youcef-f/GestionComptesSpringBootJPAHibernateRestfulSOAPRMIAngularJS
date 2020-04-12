@@ -1571,7 +1571,7 @@ ou importer tout le projet du Server en tant que dépendance dans le client RMI.
 
 Projet de type maven.
 
-Le client RMI fonctionne mais il y a des erreurs.
+Le client RMI fonctionne mais il y a des erreurs.  C'est à cause des attribut définit en LAZY EAGLE ( remplacer LAZY par EGALE). sinon il faut get un get depuis l'entité source
 
 
 ````java
@@ -1666,18 +1666,70 @@ public class ServiceRmiClientConfig {
 }
 ```
 
+## Jesey restFul
+
+Dans l'immédiat ne fonctionne pas.  
+
+
+## Spring Data Rest
+
+```xml
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+```
+
+
+
+![xxxxxxxxxxxx](images/server/springDataRest.jpg)
+
+![xxxxxxxxxxxx](images/server/SpringDataRestService.jpg)
+
+mettre **entity/saerch** dans l'url pour avoir toutes les methodes que l'on a soit meme configurer. Ici pour l'exemple nous avons **findByNomClientContains**
+![xxxxxxxxxxxx](images/server/springDataRestClientSearch.jpg)
+
+ 
+![xxxxxxxxxxxx](images/server/springDataRestfindbyNomContains.jpg)
+
+
+La methode findByNomClientContains est renommer en **contient** dans l'annotation **@RestResource** 
+![xxxxxxxxxxxx](images/server/springDataRestfindbyNomContainsRenommerEnContient.jpg)
+
+
+![xxxxxxxxxxxx](images/server/springDataRestfindbyNomContainsRenommerEnContientTest.jpg)
+
+
+On peut vouloir filter sur des attributs de l'entité. Exemple ne voir que le **nomClient** dans la class entité **Client**
+Il faut pour cela creer une projection
+![xxxxxxxxxxxx](images/server/springDataRestProjectionFilterAttributentity.jpg)
+
+
+Distingué les url **@Restcontrols** spring avec les url de **spring data rest**. Changer le contexte path **/datarest**
+ ![xxxxxxxxxxxx](images/server/springDataRestChangerContextPath.jpg)                                                                                             
+
+
+##JMS avec ActiveMQ
+
+message asynchrone
+
+La dependance de spring-activeMQ , Spring demarre par defaut un brocker activeMQ en interne. Pour des besoins de test il faut désactivé le brocker interne. Il faut dire à spring qu'il y a un brocker externe.
+
+voir la video final
+https://www.youtube.com/watch?v=cHknF4SHIi4
+
+
+
+
 ## angular front End 
 
 A faire sur la nouvelle version d'angular ( car la version d'angular de la video est trop ancienne)
 
 
 
-
 --------------------------------------------------------
 
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
 ![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
