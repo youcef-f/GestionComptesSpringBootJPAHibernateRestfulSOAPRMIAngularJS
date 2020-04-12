@@ -1,4 +1,4 @@
-package com.gestioncomptes.servicesrestful;
+package com.gestioncomptes.service.restfulspring;
 
 import java.util.List;
 
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gestioncomptes.entities.Compte;
 import com.gestioncomptes.metier.ICompteMetier;
 
-@RestController
+@RestController // commenter @RestController si l'on souhaite plutot faire du "Spring data rest". 
+//Sinon il faut renomer les endpoints coté "RestControler" car @RepositoryRestResource utilise les noms des entités.
+
 public class CompteRestService {
 
 	@Autowired

@@ -1,4 +1,4 @@
-package com.gestioncomptes.servicessoap;
+package com.gestioncomptes.service.soap;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;

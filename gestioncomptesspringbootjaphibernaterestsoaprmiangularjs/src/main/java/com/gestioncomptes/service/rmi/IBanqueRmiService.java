@@ -1,4 +1,4 @@
-package com.gestioncomptes.servicermi;
+package com.gestioncomptes.service.rmi;
 
 import com.gestioncomptes.entities.Compte;
 import com.gestioncomptes.metier.PageOperation;

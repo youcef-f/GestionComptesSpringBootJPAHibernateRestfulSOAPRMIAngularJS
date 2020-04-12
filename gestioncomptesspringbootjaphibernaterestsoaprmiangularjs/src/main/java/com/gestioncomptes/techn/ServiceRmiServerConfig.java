@@ -2,17 +2,19 @@ package com.gestioncomptes.techn;
 
 import java.rmi.UnknownHostException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 
-import com.gestioncomptes.servicermi.IBanqueRmiService;
+import com.gestioncomptes.service.rmi.IBanqueRmiService;
 
 @Configuration // permet de creer un bean spring
 public class ServiceRmiServerConfig {
 
 	@Bean
+	//@Autowired   // demande à spring d'injecter automatiquement les parameteres de cette methode.
 	public RmiServiceExporter getRMI(ApplicationContext applicationContext) throws UnknownHostException {
 		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
 		rmiServiceExporter.setService(applicationContext.getBean("Banque-Service-RMI"));

@@ -1,4 +1,4 @@
-package com.gestioncomptes.servicesrestful;
+package com.gestioncomptes.service.restfulspring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,9 @@ import com.gestioncomptes.metier.IOperationMetier;
 import com.gestioncomptes.metier.PageOperation;
 import com.gestioncomptes.metier.exception.MontantRetraitEleveException;
 
-@RestController
+@RestController // commenter @RestController si l'on souhaite plutot faire du "Spring data rest". 
+//Sinon il faut renomer les endpoints coté "RestControler" car @RepositoryRestResource utilise les noms des entités.
+
 public class OperationRestService {
 
 	@Autowired

@@ -1,4 +1,4 @@
-package com.gestioncomptes.servicermi;
+package com.gestioncomptes.service.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
