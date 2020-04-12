@@ -15,12 +15,12 @@ import com.gestioncomptes.service.restfuljaxrs.ClientRestServiceJaxRs;
 //@ApplicationPath("/jaxs")
 public class JerseyConfig {
 
-	  //@Bean  Commenter pour désactiver jersey
-	  public ResourceConfig getJersey() {
-		  ResourceConfig resourceConfig = new ResourceConfig();
-		  
-	        resourceConfig.register(ClientRestServiceJaxRs.class);
-	        
-	        return resourceConfig ; 
-	  }
+	// @Bean Commenter pour désactiver jersey
+	public ResourceConfig getJersey() {
+		ResourceConfig resourceConfig = new ResourceConfig();
+
+		resourceConfig.register(ClientRestServiceJaxRs.class);
+
+		return resourceConfig;
+	}
 }

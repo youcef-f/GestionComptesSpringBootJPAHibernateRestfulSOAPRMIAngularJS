@@ -21,41 +21,37 @@ import org.springframework.stereotype.Component;
 import com.gestioncomptes.entities.Client;
 import com.gestioncomptes.metier.IClientMetier;
 
-
-
 @Component
 // annotation JAX-RS
-@Path("/")	
+@Path("/")
 public class ClientRestServiceJaxRs {
 
 	@Autowired
 	private IClientMetier clientmetier;
-    private final static Log LOG = LogFactory.getLog(ClientRestServiceJaxRs.class);
+	private final static Log LOG = LogFactory.getLog(ClientRestServiceJaxRs.class);
 
+	@GET
+	@Consumes("application/json")
+	@Produces("application/json")
+	@Path("/healthcheck")
+	public String doesItWorks() {
+		LOG.debug("It works");
 
-    @GET
-    @Consumes("application/json")
-    @Produces("application/json")
-    @Path("/healthcheck")
-    public String doesItWorks() {
-        LOG.debug("It works");
-
-        return "It works!";
-    }
+		return "It works!";
+	}
 
 	@POST
-	@Path("/clientsj")
+	@Path("/clients")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Client saveClient(Client client) {
 		return clientmetier.saveClient(client);
 	}
 
 	@GET
-	@Path("/clientsj")
+	@Path("/clients")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Client> listclients() {
 		return clientmetier.listclients();
 	}
 
-	
 }

@@ -14,7 +14,8 @@ import com.gestioncomptes.service.rmi.IBanqueRmiService;
 public class ServiceRmiServerConfig {
 
 	@Bean
-	//@Autowired   // demande à spring d'injecter automatiquement les parameteres de cette methode.
+	// @Autowired // demande à spring d'injecter automatiquement les parameteres de
+	// cette methode.
 	public RmiServiceExporter getRMI(ApplicationContext applicationContext) throws UnknownHostException {
 		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
 		rmiServiceExporter.setService(applicationContext.getBean("Banque-Service-RMI"));
