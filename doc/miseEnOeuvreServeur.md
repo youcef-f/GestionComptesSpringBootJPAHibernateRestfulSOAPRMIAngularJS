@@ -1833,16 +1833,27 @@ Distingué les url **@Restcontrols** spring avec les url de **spring data rest**
 
 
 ## JMS avec ActiveMQ
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
-message asynchrone
+demarrer le server spring , ActiveMQ server, consumer, producter
+
+
+envoyer un message depuis un service rest ( server spring = producer )  à un client Jms ( consumer) .
+![xxxxxxxxxxxx](images/server/envoyerMessageDepuisSeverSpringVersJmsConsumerClient1.jpg)
+
+![xxxxxxxxxxxx](images/server/envoyerMessageDepuisSeverSpringVersJmsConsumerClient.jpg)
+
 
 La dependance de spring-activeMQ , Spring demarre par defaut un brocker activeMQ en interne. Pour des besoins de test il faut désactivé le brocker interne. Il faut dire à spring qu'il y a un brocker externe.
 
+
+Creer un Client depuis un Producer vers spring server. Spring server est un Consumer
+
+![xxxxxxxxxxxx](images/server/CreateClientFromjmsClient.jpg)
+
+
+
 voir la video final
 https://www.youtube.com/watch?v=cHknF4SHIi4
-
-
 
 
 ## angular front End 
@@ -1851,23 +1862,8 @@ A faire sur la nouvelle version d'angular ( car la version d'angular de la video
 
 
 
+
 --------------------------------------------------------
-
-
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
-
-![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
 ![xxxxxxxxxxxx](images/server/xxxxxxxxxxxxxxxxxxxx)
 
