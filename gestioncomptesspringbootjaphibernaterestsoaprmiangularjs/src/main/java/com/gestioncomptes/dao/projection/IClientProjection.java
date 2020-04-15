@@ -4,7 +4,7 @@ import org.springframework.data.rest.core.config.Projection;
 
 import com.gestioncomptes.entities.Client;
 
-
+// Une projection et l'équivalent d'une vue
 @Projection(name="projectionclient1", types = {Client.class})
 public interface IClientProjection {
 
